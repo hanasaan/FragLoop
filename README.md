@@ -1,6 +1,18 @@
-﻿# Frag Loop (Publish Runtime)
+﻿# Frag Loop
 
-Frag Loop is a local demo runtime that continuously generates Shadertoy-compatible GLSL fragment **shader bodies**, compiles them in WebGL2, and crossfades the results in a browser UI. This `publish/` bundle is focused on **running** trained models (not training).
+Frag Loop is a local demo runtime where a scratch-trained SLM (Small Language Model) generates all shader code, continuously producing Shadertoy-compatible GLSL fragment **shader bodies**, compiling them in WebGL2, and crossfading the results in a browser UI. This `publish/` bundle is focused on **running** trained models (not training).
+
+## Screenshot
+
+![Frag Loop UI Screenshot](screenshot.png)
+
+Limitation: Currently there is little diversity, and it frequently generates code that fails to compile.
+
+## Model Architecture
+
+Frag Loop uses a decoder-only Transformer (GPT-style) trained from scratch to generate **Shadertoy-compatible GLSL fragment shader bodies**. The model outputs the body only (functions + `mainImage`) and is wrapped by a fixed WebGL2/Shadertoy template at runtime.
+
+Pretrained model: https://huggingface.co/hanasaan/frag-loop
 
 ## What the model was trained on (summary)
 - **Pretrain**: GLSL-heavy subset from **The Stack (bigcode/the-stack-dedup)**.
