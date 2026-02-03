@@ -1,0 +1,78 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Frag Loop WebUI</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <header class="topbar">
+        <div class="brand">
+          <div class="logo">∞</div>
+          <div class="title">Frag Loop</div>
+          <div class="subtitle">shadertoy body generator · live loop</div>
+        </div>
+        <div class="status">
+          <div class="status-pill" id="wsStatus">WS: disconnected</div>
+          <div class="status-pill" id="modeStatus">Auto</div>
+          <div class="status-pill" id="renderStatus">512px</div>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="panel code-panel">
+          <div class="panel-header">
+            <span>Shader Body</span>
+            <button class="ghost" id="copyCode">Copy</button>
+          </div>
+          <pre id="codeBlock">// waiting for shader...</pre>
+        </section>
+
+        <section class="panel stage-panel">
+          <div id="stage">
+            <canvas id="canvasA"></canvas>
+            <canvas id="canvasB"></canvas>
+            <div id="overlayBanner" class="overlay-banner hidden"></div>
+            <pre id="overlayCode" class="overlay-code hidden"></pre>
+          </div>
+          <div class="controls">
+            <button id="nextBtn">Next</button>
+            <button id="pauseBtn">Pause</button>
+            <button id="fullscreenBtn">Fullscreen</button>
+            <button id="overlayBtn">Overlay</button>
+            <button id="favoriteBtn">Favorite</button>
+            <button id="rawBtn">Raw</button>
+          </div>
+          <div class="params">
+            <label>Temp <input id="tempInput" type="number" step="0.1" value="1.0" /></label>
+            <label>Top-p <input id="topPInput" type="number" step="0.01" value="0.95" /></label>
+            <label>Max tokens <input id="maxTokensInput" type="number" step="64" value="2048" /></label>
+            <label>Candidates <input id="candidatesInput" type="number" step="1" value="4" /></label>
+            <label>Display (s) <input id="displayInput" type="number" step="1" value="10" /></label>
+            <label>Fade (s) <input id="fadeInput" type="number" step="0.5" value="2" /></label>
+            <label>Render (px) <input id="renderInput" type="number" step="64" value="512" /></label>
+            <button id="applyBtn">Apply</button>
+          </div>
+          <div class="ws-config">
+            <label>WS URL <input id="wsInput" type="text" value="ws://localhost:8765/ws" /></label>
+            <button id="reconnectBtn">Reconnect</button>
+          </div>
+        </section>
+      </main>
+
+      <section class="panel log-panel">
+        <div class="panel-header">Compile & Metrics</div>
+        <div id="logBody"></div>
+      </section>
+
+      <section class="panel history-panel">
+        <div class="panel-header">History</div>
+        <div id="historyGrid"></div>
+      </section>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
